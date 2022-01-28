@@ -33,7 +33,7 @@ class BookStoreRestApi implements BookStoreApi {
           data: <Book>[],
         ));
       default:
-        return left(const Failure());
+        return left(const Failure(code: 'unknown'));
     }
   }
 }

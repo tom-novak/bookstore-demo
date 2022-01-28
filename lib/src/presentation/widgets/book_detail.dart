@@ -1,10 +1,22 @@
+import 'package:bookstore_demo/src/application/application.dart';
 import 'package:flutter/material.dart';
 
 class BookDetail extends StatelessWidget {
-  const BookDetail({Key? key}) : super(key: key);
+  final BookDetailCubit cubit;
+
+  const BookDetail({
+    Key? key,
+    required this.cubit,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Text('Book Detail'),
+        )
+      ],
+    );
   }
 }

@@ -5,8 +5,9 @@ part 'failure.freezed.dart';
 
 @freezed
 class Failure with _$Failure {
-  const factory Failure() = _Failure;
-
-  factory Failure.fromJson(Map<String, Object?> json) =>
-      _$FailureFromJson(json);
+  const factory Failure({
+    required String code,
+    String? title,
+    String? description,
+  }) = _Failure;
 }

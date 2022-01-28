@@ -1,14 +1,15 @@
-import 'package:bookstore_demo/src/application/failure.dart';
-import 'package:bookstore_demo/src/domain/domain.dart';
+part of 'book_detail_cubit.dart';
 
-class BookDetailState {
-  final bool loading;
-  final Book? data;
-  final Failure? failure;
+@freezed
+abstract class BookDetailState with _$BookDetailState {
+  const factory BookDetailState({
+    required bool isLoading,
+    Book? book,
+    required Option<Either<Failure, Unit>> failureOrSuccess,
+  }) = _BookDetailState;
 
-  BookDetailState({
-    this.loading = false,
-    this.data,
-    this.failure,
-  });
+  factory BookDetailState.initial() => BookDetailState(
+    isLoading: false,
+    failureOrSuccess: none(),
+  );
 }
