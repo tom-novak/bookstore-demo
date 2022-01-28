@@ -12,16 +12,16 @@ class BookRepository {
     required this.bookApi,
   });
 
-  Future<Either<Failure, PagedData>> search(String query, int? page) async {
-    var result = await bookApi.search(query, page);
-    return Future.delayed(const Duration(milliseconds: 700));
+  Future<Either<Failure, PagedData>> search(
+      {required String query, int? page}) async {
+    return bookApi.search(query, page);
   }
 
   Future<Either<Failure, PagedData>> newBooks() async {
     return Future.delayed(const Duration(milliseconds: 700));
   }
 
-  Future<Either<Failure, PagedData>> book(String bookId) async {
+  Future<Either<Failure, PagedData>> book({required String bookId}) async {
     return Future.delayed(const Duration(milliseconds: 700));
   }
 }

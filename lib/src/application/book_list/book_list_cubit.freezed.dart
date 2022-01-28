@@ -20,11 +20,13 @@ class _$BookListStateTearOff {
 
   _BookListState call(
       {required bool isLoading,
-      required List<Book> books,
+      required String query,
+      required PagedData data,
       required Option<Either<Failure, Unit>> failureOrSuccess}) {
     return _BookListState(
       isLoading: isLoading,
-      books: books,
+      query: query,
+      data: data,
       failureOrSuccess: failureOrSuccess,
     );
   }
@@ -36,7 +38,8 @@ const $BookListState = _$BookListStateTearOff();
 /// @nodoc
 mixin _$BookListState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<Book> get books => throw _privateConstructorUsedError;
+  String get query => throw _privateConstructorUsedError;
+  PagedData get data => throw _privateConstructorUsedError;
   Option<Either<Failure, Unit>> get failureOrSuccess =>
       throw _privateConstructorUsedError;
 
@@ -52,8 +55,11 @@ abstract class $BookListStateCopyWith<$Res> {
       _$BookListStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
-      List<Book> books,
+      String query,
+      PagedData data,
       Option<Either<Failure, Unit>> failureOrSuccess});
+
+  $PagedDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -68,7 +74,8 @@ class _$BookListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? books = freezed,
+    Object? query = freezed,
+    Object? data = freezed,
     Object? failureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,15 +83,26 @@ class _$BookListStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      books: books == freezed
-          ? _value.books
-          : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>,
+      query: query == freezed
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as PagedData,
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
           : failureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Option<Either<Failure, Unit>>,
     ));
+  }
+
+  @override
+  $PagedDataCopyWith<$Res> get data {
+    return $PagedDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
   }
 }
 
@@ -97,8 +115,12 @@ abstract class _$BookListStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
-      List<Book> books,
+      String query,
+      PagedData data,
       Option<Either<Failure, Unit>> failureOrSuccess});
+
+  @override
+  $PagedDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -115,7 +137,8 @@ class __$BookListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? books = freezed,
+    Object? query = freezed,
+    Object? data = freezed,
     Object? failureOrSuccess = freezed,
   }) {
     return _then(_BookListState(
@@ -123,10 +146,14 @@ class __$BookListStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      books: books == freezed
-          ? _value.books
-          : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>,
+      query: query == freezed
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as PagedData,
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
           : failureOrSuccess // ignore: cast_nullable_to_non_nullable
@@ -140,19 +167,22 @@ class __$BookListStateCopyWithImpl<$Res>
 class _$_BookListState implements _BookListState {
   const _$_BookListState(
       {required this.isLoading,
-      required this.books,
+      required this.query,
+      required this.data,
       required this.failureOrSuccess});
 
   @override
   final bool isLoading;
   @override
-  final List<Book> books;
+  final String query;
+  @override
+  final PagedData data;
   @override
   final Option<Either<Failure, Unit>> failureOrSuccess;
 
   @override
   String toString() {
-    return 'BookListState(isLoading: $isLoading, books: $books, failureOrSuccess: $failureOrSuccess)';
+    return 'BookListState(isLoading: $isLoading, query: $query, data: $data, failureOrSuccess: $failureOrSuccess)';
   }
 
   @override
@@ -161,7 +191,8 @@ class _$_BookListState implements _BookListState {
         (other.runtimeType == runtimeType &&
             other is _BookListState &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other.books, books) &&
+            const DeepCollectionEquality().equals(other.query, query) &&
+            const DeepCollectionEquality().equals(other.data, data) &&
             const DeepCollectionEquality()
                 .equals(other.failureOrSuccess, failureOrSuccess));
   }
@@ -170,7 +201,8 @@ class _$_BookListState implements _BookListState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(books),
+      const DeepCollectionEquality().hash(query),
+      const DeepCollectionEquality().hash(data),
       const DeepCollectionEquality().hash(failureOrSuccess));
 
   @JsonKey(ignore: true)
@@ -182,14 +214,17 @@ class _$_BookListState implements _BookListState {
 abstract class _BookListState implements BookListState {
   const factory _BookListState(
           {required bool isLoading,
-          required List<Book> books,
+          required String query,
+          required PagedData data,
           required Option<Either<Failure, Unit>> failureOrSuccess}) =
       _$_BookListState;
 
   @override
   bool get isLoading;
   @override
-  List<Book> get books;
+  String get query;
+  @override
+  PagedData get data;
   @override
   Option<Either<Failure, Unit>> get failureOrSuccess;
   @override

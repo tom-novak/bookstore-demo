@@ -1,7 +1,7 @@
 part of 'book_detail_cubit.dart';
 
 @freezed
-abstract class BookDetailState with _$BookDetailState {
+class BookDetailState with _$BookDetailState {
   const factory BookDetailState({
     required bool isLoading,
     Book? book,

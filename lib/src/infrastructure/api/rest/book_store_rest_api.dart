@@ -24,14 +24,11 @@ class BookStoreRestApi implements BookStoreApi {
 
   @override
   Future<Either<Failure, PagedData>> search(String query, int? page) async {
-    var result = await dio.get('search/$query');
+    var pageUrlPart = page == null ? '' : '/$page';
+    var result = await dio.get('search/$query$pageUrlPart');
     switch (result.statusCode) {
       case 200:
-        return right(PagedData(
-          page: page ?? 0,
-          total: 20,
-          data: <Book>[],
-        ));
+        return right(PagedData.fromJson(result.data));
       default:
         return left(const Failure(code: 'unknown'));
     }

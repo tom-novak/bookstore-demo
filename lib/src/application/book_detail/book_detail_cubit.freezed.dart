@@ -54,6 +54,8 @@ abstract class $BookDetailStateCopyWith<$Res> {
       {bool isLoading,
       Book? book,
       Option<Either<Failure, Unit>> failureOrSuccess});
+
+  $BookCopyWith<$Res>? get book;
 }
 
 /// @nodoc
@@ -86,6 +88,17 @@ class _$BookDetailStateCopyWithImpl<$Res>
               as Option<Either<Failure, Unit>>,
     ));
   }
+
+  @override
+  $BookCopyWith<$Res>? get book {
+    if (_value.book == null) {
+      return null;
+    }
+
+    return $BookCopyWith<$Res>(_value.book!, (value) {
+      return _then(_value.copyWith(book: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -99,6 +112,9 @@ abstract class _$BookDetailStateCopyWith<$Res>
       {bool isLoading,
       Book? book,
       Option<Either<Failure, Unit>> failureOrSuccess});
+
+  @override
+  $BookCopyWith<$Res>? get book;
 }
 
 /// @nodoc
