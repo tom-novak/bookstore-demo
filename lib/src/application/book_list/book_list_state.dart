@@ -1,14 +1,16 @@
-import 'package:bookstore_demo/src/application/application.dart';
-import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
+part of 'book_list_cubit.dart';
 
-class BookListState {
-  final Failure? failure;
-  final bool loading;
-  final PagedData? data;
+@freezed
+abstract class BookListState with _$BookListState {
+  const factory BookListState({
+    required bool isLoading,
+    required List<Book> books,
+    required Option<Either<Failure, Unit>> failureOrSuccess,
+  }) = _BookListState;
 
-  BookListState({
-    this.failure,
-    this.loading = false,
-    this.data,
-  });
+  factory BookListState.initial() => BookListState(
+        isLoading: false,
+        books: <Book>[],
+        failureOrSuccess: none(),
+      );
 }
