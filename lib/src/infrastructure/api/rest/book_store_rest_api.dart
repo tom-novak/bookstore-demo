@@ -11,26 +11,54 @@ class BookStoreRestApi implements BookStoreApi {
   });
 
   @override
-  Future<Either<Failure, Book>> book(String bookId) async {
-    // TODO: implement book
-    throw UnimplementedError();
+  Future<Either<Failure, Book>> book(String isbn) async {
+    var response = await dio.get('books/$isbn');
+    return processResponse(
+      response: response,
+      dataBuilder: (data) => Book.fromJson(data),
+    );
   }
 
   @override
   Future<Either<Failure, PagedData>> newBooks() async {
-    // TODO: implement newBooks
-    throw UnimplementedError();
+    var response = await dio.get('new');
+    return processResponse(
+      response: response,
+      dataBuilder: (data) => PagedData.fromJson(data),
+    );
   }
 
   @override
   Future<Either<Failure, PagedData>> search(String query, int? page) async {
     var pageUrlPart = page == null ? '' : '/$page';
-    var result = await dio.get('search/$query$pageUrlPart');
-    switch (result.statusCode) {
-      case 200:
-        return right(PagedData.fromJson(result.data));
-      default:
-        return left(const Failure(code: 'unknown'));
+    var response = await dio.get('search/$query$pageUrlPart');
+    return processResponse<PagedData>(
+      response: response,
+      dataBuilder: (data) => PagedData.fromJson(data),
+    );
+  }
+
+  Either<Failure, T> processResponse<T>({
+    required Response response,
+    required T Function(Map<String, Object?>) dataBuilder,
+  }) {
+    if (response.statusCode == null) {
+      return left(const Failure.unexpected());
+    }
+
+    if (response.statusCode! >= 200 && response.statusCode! < 300) {
+      return right(dataBuilder(response.data));
+    } else {
+      switch (response.statusCode) {
+        case 401:
+          return left(const Failure.unauthorized());
+        case 404:
+          return left(const Failure.apiError());
+        case 500:
+          return left(const Failure.apiError());
+        default:
+          return left(const Failure.unexpected());
+      }
     }
   }
 }
