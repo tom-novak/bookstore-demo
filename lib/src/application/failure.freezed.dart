@@ -18,12 +18,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$FailureTearOff {
   const _$FailureTearOff();
 
-  _Failure call({required String code, String? title, String? description}) {
-    return _Failure(
-      code: code,
-      title: title,
-      description: description,
-    );
+  _ApiError apiError() {
+    return const _ApiError();
+  }
+
+  _Unauthorized unauthorized() {
+    return const _Unauthorized();
+  }
+
+  _Unexpected unexpected() {
+    return const _Unexpected();
   }
 }
 
@@ -32,19 +36,56 @@ const $Failure = _$FailureTearOff();
 
 /// @nodoc
 mixin _$Failure {
-  String get code => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() apiError,
+    required TResult Function() unauthorized,
+    required TResult Function() unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ApiError value) apiError,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Unexpected value) unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
       _$FailureCopyWithImpl<$Res>;
-  $Res call({String code, String? title, String? description});
 }
 
 /// @nodoc
@@ -54,133 +95,350 @@ class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
   final Failure _value;
   // ignore: unused_field
   final $Res Function(Failure) _then;
-
-  @override
-  $Res call({
-    Object? code = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-  }) {
-    return _then(_value.copyWith(
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$FailureCopyWith<$Res> implements $FailureCopyWith<$Res> {
-  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
-      __$FailureCopyWithImpl<$Res>;
-  @override
-  $Res call({String code, String? title, String? description});
+abstract class _$ApiErrorCopyWith<$Res> {
+  factory _$ApiErrorCopyWith(_ApiError value, $Res Function(_ApiError) then) =
+      __$ApiErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
-    implements _$FailureCopyWith<$Res> {
-  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
-      : super(_value, (v) => _then(v as _Failure));
+class __$ApiErrorCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$ApiErrorCopyWith<$Res> {
+  __$ApiErrorCopyWithImpl(_ApiError _value, $Res Function(_ApiError) _then)
+      : super(_value, (v) => _then(v as _ApiError));
 
   @override
-  _Failure get _value => super._value as _Failure;
-
-  @override
-  $Res call({
-    Object? code = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-  }) {
-    return _then(_Failure(
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  _ApiError get _value => super._value as _ApiError;
 }
 
 /// @nodoc
 
-class _$_Failure with DiagnosticableTreeMixin implements _Failure {
-  const _$_Failure({required this.code, this.title, this.description});
-
-  @override
-  final String code;
-  @override
-  final String? title;
-  @override
-  final String? description;
+class _$_ApiError with DiagnosticableTreeMixin implements _ApiError {
+  const _$_ApiError();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Failure(code: $code, title: $title, description: $description)';
+    return 'Failure.apiError()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Failure'))
-      ..add(DiagnosticsProperty('code', code))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('description', description));
+    properties..add(DiagnosticsProperty('type', 'Failure.apiError'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Failure &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+        (other.runtimeType == runtimeType && other is _ApiError);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description));
+  int get hashCode => runtimeType.hashCode;
 
-  @JsonKey(ignore: true)
   @override
-  _$FailureCopyWith<_Failure> get copyWith =>
-      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() apiError,
+    required TResult Function() unauthorized,
+    required TResult Function() unexpected,
+  }) {
+    return apiError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+  }) {
+    return apiError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
+    if (apiError != null) {
+      return apiError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ApiError value) apiError,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Unexpected value) unexpected,
+  }) {
+    return apiError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+  }) {
+    return apiError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
+    if (apiError != null) {
+      return apiError(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _Failure implements Failure {
-  const factory _Failure(
-      {required String code, String? title, String? description}) = _$_Failure;
+abstract class _ApiError implements Failure {
+  const factory _ApiError() = _$_ApiError;
+}
+
+/// @nodoc
+abstract class _$UnauthorizedCopyWith<$Res> {
+  factory _$UnauthorizedCopyWith(
+          _Unauthorized value, $Res Function(_Unauthorized) then) =
+      __$UnauthorizedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnauthorizedCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$UnauthorizedCopyWith<$Res> {
+  __$UnauthorizedCopyWithImpl(
+      _Unauthorized _value, $Res Function(_Unauthorized) _then)
+      : super(_value, (v) => _then(v as _Unauthorized));
 
   @override
-  String get code;
+  _Unauthorized get _value => super._value as _Unauthorized;
+}
+
+/// @nodoc
+
+class _$_Unauthorized with DiagnosticableTreeMixin implements _Unauthorized {
+  const _$_Unauthorized();
+
   @override
-  String? get title;
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Failure.unauthorized()';
+  }
+
   @override
-  String? get description;
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'Failure.unauthorized'));
+  }
+
   @override
-  @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith =>
-      throw _privateConstructorUsedError;
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Unauthorized);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() apiError,
+    required TResult Function() unauthorized,
+    required TResult Function() unexpected,
+  }) {
+    return unauthorized();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+  }) {
+    return unauthorized?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ApiError value) apiError,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Unexpected value) unexpected,
+  }) {
+    return unauthorized(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+  }) {
+    return unauthorized?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unauthorized implements Failure {
+  const factory _Unauthorized() = _$_Unauthorized;
+}
+
+/// @nodoc
+abstract class _$UnexpectedCopyWith<$Res> {
+  factory _$UnexpectedCopyWith(
+          _Unexpected value, $Res Function(_Unexpected) then) =
+      __$UnexpectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnexpectedCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$UnexpectedCopyWith<$Res> {
+  __$UnexpectedCopyWithImpl(
+      _Unexpected _value, $Res Function(_Unexpected) _then)
+      : super(_value, (v) => _then(v as _Unexpected));
+
+  @override
+  _Unexpected get _value => super._value as _Unexpected;
+}
+
+/// @nodoc
+
+class _$_Unexpected with DiagnosticableTreeMixin implements _Unexpected {
+  const _$_Unexpected();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Failure.unexpected()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'Failure.unexpected'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Unexpected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() apiError,
+    required TResult Function() unauthorized,
+    required TResult Function() unexpected,
+  }) {
+    return unexpected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+  }) {
+    return unexpected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? apiError,
+    TResult Function()? unauthorized,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ApiError value) apiError,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Unexpected value) unexpected,
+  }) {
+    return unexpected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+  }) {
+    return unexpected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ApiError value)? apiError,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unexpected implements Failure {
+  const factory _Unexpected() = _$_Unexpected;
 }
