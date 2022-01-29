@@ -6,6 +6,7 @@ import 'package:bookstore_demo/src/infrastructure/book_repository.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
@@ -27,11 +28,13 @@ void main() {
 class BookStoreApp extends StatelessWidget {
   const BookStoreApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: BookListScreen(
         cubit: getIt.get<BookListCubit>(),
       ),
