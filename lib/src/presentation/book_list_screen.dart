@@ -61,7 +61,6 @@ class _BookListScreenState extends State<BookListScreen> {
               itemBuilder: (context, index) {
                 var item = snapshot.data!.data.books[index];
                 return ListTile(
-                  leading: Text('${index + 1}'),
                   title: Text(item.title ?? ''),
                   onTap: () {
                     Navigator.of(context).push(
@@ -97,7 +96,7 @@ class _BookListScreenState extends State<BookListScreen> {
         elevation: 20,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.all(8.0),
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: presentation.SearchForm(

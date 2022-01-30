@@ -1,5 +1,13 @@
 {
     "appTitle": "Bookstore demo",
     "search": "Hledat",
-    "start_searching": "Začněte vyhledávat"
+    "start_searching": "Začněte vyhledávat",
+    "book_detail": "Detail knihy",
+    "authors": "Autoři",
+    "year": "Rok vydání",
+    "pages": "Počet stran",
+    "isbn": "ISBN",
+    "publisher": "Vydavatel",
+    "price": "Cena",
+    "description": "Popis"
 }

@@ -22,7 +22,7 @@ class _$BookListStateTearOff {
       {required bool isLoading,
       required String query,
       required PagedData data,
-      required Option<Either<Failure, Unit>> failureOrSuccess}) {
+      required Option<Either<ApiFailure, Unit>> failureOrSuccess}) {
     return _BookListState(
       isLoading: isLoading,
       query: query,
@@ -40,7 +40,7 @@ mixin _$BookListState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get query => throw _privateConstructorUsedError;
   PagedData get data => throw _privateConstructorUsedError;
-  Option<Either<Failure, Unit>> get failureOrSuccess =>
+  Option<Either<ApiFailure, Unit>> get failureOrSuccess =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -57,7 +57,7 @@ abstract class $BookListStateCopyWith<$Res> {
       {bool isLoading,
       String query,
       PagedData data,
-      Option<Either<Failure, Unit>> failureOrSuccess});
+      Option<Either<ApiFailure, Unit>> failureOrSuccess});
 
   $PagedDataCopyWith<$Res> get data;
 }
@@ -94,7 +94,7 @@ class _$BookListStateCopyWithImpl<$Res>
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
           : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, Unit>>,
+              as Option<Either<ApiFailure, Unit>>,
     ));
   }
 
@@ -117,7 +117,7 @@ abstract class _$BookListStateCopyWith<$Res>
       {bool isLoading,
       String query,
       PagedData data,
-      Option<Either<Failure, Unit>> failureOrSuccess});
+      Option<Either<ApiFailure, Unit>> failureOrSuccess});
 
   @override
   $PagedDataCopyWith<$Res> get data;
@@ -157,7 +157,7 @@ class __$BookListStateCopyWithImpl<$Res>
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
           : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, Unit>>,
+              as Option<Either<ApiFailure, Unit>>,
     ));
   }
 }
@@ -178,7 +178,7 @@ class _$_BookListState implements _BookListState {
   @override
   final PagedData data;
   @override
-  final Option<Either<Failure, Unit>> failureOrSuccess;
+  final Option<Either<ApiFailure, Unit>> failureOrSuccess;
 
   @override
   String toString() {
@@ -216,7 +216,7 @@ abstract class _BookListState implements BookListState {
           {required bool isLoading,
           required String query,
           required PagedData data,
-          required Option<Either<Failure, Unit>> failureOrSuccess}) =
+          required Option<Either<ApiFailure, Unit>> failureOrSuccess}) =
       _$_BookListState;
 
   @override
@@ -226,7 +226,7 @@ abstract class _BookListState implements BookListState {
   @override
   PagedData get data;
   @override
-  Option<Either<Failure, Unit>> get failureOrSuccess;
+  Option<Either<ApiFailure, Unit>> get failureOrSuccess;
   @override
   @JsonKey(ignore: true)
   _$BookListStateCopyWith<_BookListState> get copyWith =>

@@ -20,12 +20,12 @@ class _$BookDetailStateTearOff {
 
   _BookDetailState call(
       {required bool isLoading,
-      Book? book,
-      required Option<Either<Failure, Unit>> failureOrSuccess}) {
+      required String isbn,
+      required Option<Either<Failure, Book>> failureOrSuccessOption}) {
     return _BookDetailState(
       isLoading: isLoading,
-      book: book,
-      failureOrSuccess: failureOrSuccess,
+      isbn: isbn,
+      failureOrSuccessOption: failureOrSuccessOption,
     );
   }
 }
@@ -36,8 +36,8 @@ const $BookDetailState = _$BookDetailStateTearOff();
 /// @nodoc
 mixin _$BookDetailState {
   bool get isLoading => throw _privateConstructorUsedError;
-  Book? get book => throw _privateConstructorUsedError;
-  Option<Either<Failure, Unit>> get failureOrSuccess =>
+  String get isbn => throw _privateConstructorUsedError;
+  Option<Either<Failure, Book>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -52,10 +52,8 @@ abstract class $BookDetailStateCopyWith<$Res> {
       _$BookDetailStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
-      Book? book,
-      Option<Either<Failure, Unit>> failureOrSuccess});
-
-  $BookCopyWith<$Res>? get book;
+      String isbn,
+      Option<Either<Failure, Book>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -70,34 +68,23 @@ class _$BookDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? book = freezed,
-    Object? failureOrSuccess = freezed,
+    Object? isbn = freezed,
+    Object? failureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      book: book == freezed
-          ? _value.book
-          : book // ignore: cast_nullable_to_non_nullable
-              as Book?,
-      failureOrSuccess: failureOrSuccess == freezed
-          ? _value.failureOrSuccess
-          : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, Unit>>,
+      isbn: isbn == freezed
+          ? _value.isbn
+          : isbn // ignore: cast_nullable_to_non_nullable
+              as String,
+      failureOrSuccessOption: failureOrSuccessOption == freezed
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<Failure, Book>>,
     ));
-  }
-
-  @override
-  $BookCopyWith<$Res>? get book {
-    if (_value.book == null) {
-      return null;
-    }
-
-    return $BookCopyWith<$Res>(_value.book!, (value) {
-      return _then(_value.copyWith(book: value));
-    });
   }
 }
 
@@ -110,11 +97,8 @@ abstract class _$BookDetailStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
-      Book? book,
-      Option<Either<Failure, Unit>> failureOrSuccess});
-
-  @override
-  $BookCopyWith<$Res>? get book;
+      String isbn,
+      Option<Either<Failure, Book>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -131,22 +115,22 @@ class __$BookDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? book = freezed,
-    Object? failureOrSuccess = freezed,
+    Object? isbn = freezed,
+    Object? failureOrSuccessOption = freezed,
   }) {
     return _then(_BookDetailState(
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      book: book == freezed
-          ? _value.book
-          : book // ignore: cast_nullable_to_non_nullable
-              as Book?,
-      failureOrSuccess: failureOrSuccess == freezed
-          ? _value.failureOrSuccess
-          : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, Unit>>,
+      isbn: isbn == freezed
+          ? _value.isbn
+          : isbn // ignore: cast_nullable_to_non_nullable
+              as String,
+      failureOrSuccessOption: failureOrSuccessOption == freezed
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<Failure, Book>>,
     ));
   }
 }
@@ -155,18 +139,20 @@ class __$BookDetailStateCopyWithImpl<$Res>
 
 class _$_BookDetailState implements _BookDetailState {
   const _$_BookDetailState(
-      {required this.isLoading, this.book, required this.failureOrSuccess});
+      {required this.isLoading,
+      required this.isbn,
+      required this.failureOrSuccessOption});
 
   @override
   final bool isLoading;
   @override
-  final Book? book;
+  final String isbn;
   @override
-  final Option<Either<Failure, Unit>> failureOrSuccess;
+  final Option<Either<Failure, Book>> failureOrSuccessOption;
 
   @override
   String toString() {
-    return 'BookDetailState(isLoading: $isLoading, book: $book, failureOrSuccess: $failureOrSuccess)';
+    return 'BookDetailState(isLoading: $isLoading, isbn: $isbn, failureOrSuccessOption: $failureOrSuccessOption)';
   }
 
   @override
@@ -175,17 +161,17 @@ class _$_BookDetailState implements _BookDetailState {
         (other.runtimeType == runtimeType &&
             other is _BookDetailState &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other.book, book) &&
+            const DeepCollectionEquality().equals(other.isbn, isbn) &&
             const DeepCollectionEquality()
-                .equals(other.failureOrSuccess, failureOrSuccess));
+                .equals(other.failureOrSuccessOption, failureOrSuccessOption));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(book),
-      const DeepCollectionEquality().hash(failureOrSuccess));
+      const DeepCollectionEquality().hash(isbn),
+      const DeepCollectionEquality().hash(failureOrSuccessOption));
 
   @JsonKey(ignore: true)
   @override
@@ -196,16 +182,16 @@ class _$_BookDetailState implements _BookDetailState {
 abstract class _BookDetailState implements BookDetailState {
   const factory _BookDetailState(
           {required bool isLoading,
-          Book? book,
-          required Option<Either<Failure, Unit>> failureOrSuccess}) =
+          required String isbn,
+          required Option<Either<Failure, Book>> failureOrSuccessOption}) =
       _$_BookDetailState;
 
   @override
   bool get isLoading;
   @override
-  Book? get book;
+  String get isbn;
   @override
-  Option<Either<Failure, Unit>> get failureOrSuccess;
+  Option<Either<Failure, Book>> get failureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$BookDetailStateCopyWith<_BookDetailState> get copyWith =>
