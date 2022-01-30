@@ -1,8 +1,10 @@
 import 'package:bookstore_demo/main.dart';
 import 'package:bookstore_demo/src/application/application.dart';
-import 'package:bookstore_demo/src/presentation/book_detail_screen.dart';
+import 'package:bookstore_demo/src/presentation/presentation.dart'
+    as presentation;
 import 'package:flutter/material.dart';
 import 'package:flutter_common_widgets/flutter_common_widgets.dart';
+import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
 
 class BookListScreen extends StatefulWidget {
   final BookListCubit cubit;
@@ -17,8 +19,6 @@ class BookListScreen extends StatefulWidget {
 }
 
 class _BookListScreenState extends State<BookListScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _searchController = TextEditingController();
   late ScrollController _controller;
   late Function() bottomReachedListener;
   var loadingStatus = LoadingStatus.idle;
@@ -33,7 +33,7 @@ class _BookListScreenState extends State<BookListScreen> {
 
   @override
   void dispose() {
-    _searchController.dispose();
+    _controller.removeListener(bottomReachedListener);
     super.dispose();
   }
 
@@ -67,7 +67,7 @@ class _BookListScreenState extends State<BookListScreen> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return BookDetailScreen(
+                          return presentation.BookDetailScreen(
                             bookPreview: snapshot.data!.data.books[index],
                             cubit: getIt.get<BookDetailCubit>(),
                           );
@@ -88,8 +88,8 @@ class _BookListScreenState extends State<BookListScreen> {
             );
           }
 
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: Text(AppLocalizations.of(context)!.start_searching),
           );
         },
       ),
@@ -97,29 +97,13 @@ class _BookListScreenState extends State<BookListScreen> {
         elevation: 20,
         child: SafeArea(
           child: Padding(
-            padding: kContainerPadding,
-            child: Form(
-              key: _formKey,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: TextFormField(
-                        controller: _searchController,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                    ),
-                    onPressed: () {
-                      widget.cubit.search(_searchController.text);
-                    },
-                    child: const Icon(Icons.search),
-                  ),
-                ],
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: presentation.SearchForm(
+                onSubmit: (value) {
+                  widget.cubit.search(value);
+                },
               ),
             ),
           ),
