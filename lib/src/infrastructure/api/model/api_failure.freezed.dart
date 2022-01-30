@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'failure.dart';
+part of 'api_failure.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,8 +15,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$FailureTearOff {
-  const _$FailureTearOff();
+class _$ApiFailureTearOff {
+  const _$ApiFailureTearOff();
 
   _ApiError apiError() {
     return const _ApiError();
@@ -32,10 +32,10 @@ class _$FailureTearOff {
 }
 
 /// @nodoc
-const $Failure = _$FailureTearOff();
+const $ApiFailure = _$ApiFailureTearOff();
 
 /// @nodoc
-mixin _$Failure {
+mixin _$ApiFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() apiError,
@@ -83,18 +83,19 @@ mixin _$Failure {
 }
 
 /// @nodoc
-abstract class $FailureCopyWith<$Res> {
-  factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
-      _$FailureCopyWithImpl<$Res>;
+abstract class $ApiFailureCopyWith<$Res> {
+  factory $ApiFailureCopyWith(
+          ApiFailure value, $Res Function(ApiFailure) then) =
+      _$ApiFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
-  _$FailureCopyWithImpl(this._value, this._then);
+class _$ApiFailureCopyWithImpl<$Res> implements $ApiFailureCopyWith<$Res> {
+  _$ApiFailureCopyWithImpl(this._value, this._then);
 
-  final Failure _value;
+  final ApiFailure _value;
   // ignore: unused_field
-  final $Res Function(Failure) _then;
+  final $Res Function(ApiFailure) _then;
 }
 
 /// @nodoc
@@ -104,7 +105,7 @@ abstract class _$ApiErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ApiErrorCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+class __$ApiErrorCopyWithImpl<$Res> extends _$ApiFailureCopyWithImpl<$Res>
     implements _$ApiErrorCopyWith<$Res> {
   __$ApiErrorCopyWithImpl(_ApiError _value, $Res Function(_ApiError) _then)
       : super(_value, (v) => _then(v as _ApiError));
@@ -120,13 +121,13 @@ class _$_ApiError with DiagnosticableTreeMixin implements _ApiError {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Failure.apiError()';
+    return 'ApiFailure.apiError()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'Failure.apiError'));
+    properties..add(DiagnosticsProperty('type', 'ApiFailure.apiError'));
   }
 
   @override
@@ -207,7 +208,7 @@ class _$_ApiError with DiagnosticableTreeMixin implements _ApiError {
   }
 }
 
-abstract class _ApiError implements Failure {
+abstract class _ApiError implements ApiFailure {
   const factory _ApiError() = _$_ApiError;
 }
 
@@ -219,7 +220,7 @@ abstract class _$UnauthorizedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UnauthorizedCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+class __$UnauthorizedCopyWithImpl<$Res> extends _$ApiFailureCopyWithImpl<$Res>
     implements _$UnauthorizedCopyWith<$Res> {
   __$UnauthorizedCopyWithImpl(
       _Unauthorized _value, $Res Function(_Unauthorized) _then)
@@ -236,13 +237,13 @@ class _$_Unauthorized with DiagnosticableTreeMixin implements _Unauthorized {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Failure.unauthorized()';
+    return 'ApiFailure.unauthorized()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'Failure.unauthorized'));
+    properties..add(DiagnosticsProperty('type', 'ApiFailure.unauthorized'));
   }
 
   @override
@@ -323,7 +324,7 @@ class _$_Unauthorized with DiagnosticableTreeMixin implements _Unauthorized {
   }
 }
 
-abstract class _Unauthorized implements Failure {
+abstract class _Unauthorized implements ApiFailure {
   const factory _Unauthorized() = _$_Unauthorized;
 }
 
@@ -335,7 +336,7 @@ abstract class _$UnexpectedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+class __$UnexpectedCopyWithImpl<$Res> extends _$ApiFailureCopyWithImpl<$Res>
     implements _$UnexpectedCopyWith<$Res> {
   __$UnexpectedCopyWithImpl(
       _Unexpected _value, $Res Function(_Unexpected) _then)
@@ -352,13 +353,13 @@ class _$_Unexpected with DiagnosticableTreeMixin implements _Unexpected {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Failure.unexpected()';
+    return 'ApiFailure.unexpected()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'Failure.unexpected'));
+    properties..add(DiagnosticsProperty('type', 'ApiFailure.unexpected'));
   }
 
   @override
@@ -439,6 +440,6 @@ class _$_Unexpected with DiagnosticableTreeMixin implements _Unexpected {
   }
 }
 
-abstract class _Unexpected implements Failure {
+abstract class _Unexpected implements ApiFailure {
   const factory _Unexpected() = _$_Unexpected;
 }

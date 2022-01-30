@@ -6,7 +6,7 @@ class BookListState with _$BookListState {
     required bool isLoading,
     required String query,
     required PagedData data,
-    required Option<Either<Failure, Unit>> failureOrSuccess,
+    required Option<Either<ApiFailure, Unit>> failureOrSuccess,
   }) = _BookListState;
 
   factory BookListState.initial() => BookListState(

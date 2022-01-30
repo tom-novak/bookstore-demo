@@ -5,7 +5,5 @@ part 'failure.freezed.dart';
 
 @freezed
 class Failure with _$Failure {
-  const factory Failure.apiError() = _ApiError;
-  const factory Failure.unauthorized() = _Unauthorized;
   const factory Failure.unexpected() = _Unexpected;
 }

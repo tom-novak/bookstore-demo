@@ -1,5 +1,13 @@
 {
     "appTitle": "Bookstore demo",
     "search": "Search",
-    "start_searching": "Start searching"
+    "start_searching": "Start searching",
+    "book_detail": "Book detail",
+    "authors": "Authors",
+    "year": "Year",
+    "pages": "Pages",
+    "isbn": "ISBN",
+    "publisher": "Publisher",
+    "price": "Price",
+    "description": "Description"
 }

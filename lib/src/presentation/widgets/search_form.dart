@@ -59,7 +59,7 @@ class _SearchFormState extends State<SearchForm> {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(right: 8.0),
               child: TextFormField(
                 decoration: inputDecoration,
                 controller: widget.controller,

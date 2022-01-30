@@ -3,19 +3,19 @@ import 'package:dartz/dartz.dart';
 
 class BookStoreMockApi implements BookStoreApi {
   @override
-  Future<Either<Failure, Book>> book(String bookId) {
+  Future<Either<ApiFailure, Book>> book(String bookId) {
     // TODO: implement book
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, PagedData>> newBooks() {
+  Future<Either<ApiFailure, PagedData>> newBooks() {
     // TODO: implement newBooks
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, PagedData>> search(String query, int? page) {
+  Future<Either<ApiFailure, PagedData>> search(String query, int? page) {
     // TODO: implement search
     throw UnimplementedError();
   }

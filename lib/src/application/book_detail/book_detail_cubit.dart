@@ -1,3 +1,4 @@
+import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,47 @@ class BookDetailCubit extends Cubit<BookDetailState> {
   BookDetailCubit({required this.repository})
       : super(BookDetailState.initial());
 
-  void loadBookDetail(String bookId) async {
+  void init(Book bookPreview) {
+    var isbn = bookPreview.isbn13;
+    if (isbn?.isEmpty ?? true) {
+      isbn = bookPreview.isbn10;
+    }
 
+    if (isbn?.isEmpty ?? true) {
+      emit(state.copyWith(
+        failureOrSuccessOption: some(left(const Failure.unexpected())),
+      ));
+    } else {
+      emit(state.copyWith(isbn: isbn!));
+      loadBookDetail();
+    }
+  }
+
+  void loadBookDetail() async {
+    if (state.isbn.isNotEmpty) {
+      emit(state.copyWith(isLoading: true));
+      await repository.book(bookId: state.isbn).then(
+            (response) => response.fold(
+              (apiFailure) => emit(
+                state.copyWith(
+                  isLoading: false,
+                  failureOrSuccessOption: some(left(const Failure.unexpected())),
+                ),
+              ),
+              (result) => emit(
+                state.copyWith(
+                  isLoading: false,
+                  failureOrSuccessOption: some(right(result)),
+                ),
+              ),
+            ),
+          );
+    } else {
+      emit(
+        state.copyWith(
+          failureOrSuccessOption: some(left(const Failure.unexpected())),
+        ),
+      );
+    }
   }
 }
