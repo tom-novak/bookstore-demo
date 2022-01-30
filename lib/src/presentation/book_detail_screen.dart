@@ -20,13 +20,10 @@ class BookDetailScreen extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Text('${bookPreview.title}'),
-              ],
+          if (bookPreview.title != null)
+            SliverToBoxAdapter(
+              child: Text(bookPreview.title!),
             ),
-          )
         ],
       ),
     );
