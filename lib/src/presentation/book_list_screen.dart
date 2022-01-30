@@ -1,4 +1,4 @@
-import 'package:bookstore_demo/main.dart';
+import 'package:bookstore_demo/main_prod.dart';
 import 'package:bookstore_demo/src/application/application.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart'
     as presentation;
