@@ -1,3 +1,5 @@
 {
-    "appTitle": "Bookstore demo"
+    "appTitle": "Bookstore demo",
+    "search": "Search",
+    "start_searching": "Start searching"
 }

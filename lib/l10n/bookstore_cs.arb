@@ -1,3 +1,5 @@
 {
-    "appTitle": "Bookstore demo"
+    "appTitle": "Bookstore demo",
+    "search": "Hledat",
+    "start_searching": "Začněte vyhledávat"
 }
