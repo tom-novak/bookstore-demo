@@ -60,8 +60,8 @@ class _BookListScreenState extends State<BookListScreen> {
               controller: _controller,
               itemBuilder: (context, index) {
                 var item = snapshot.data!.data.books[index];
-                return ListTile(
-                  title: Text(item.title ?? ''),
+                return CommonListTile(
+                  item: item.toCommonItem(),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
