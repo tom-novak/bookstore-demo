@@ -1,6 +1,7 @@
 import 'package:bookstore_demo/src/application/application.dart';
 import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_common_widgets/flutter_common_widgets.dart' as common;
@@ -64,6 +65,15 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                                   style: Theme.of(context).textTheme.bodyText1,
                                 ),
                               ),
+                            if (book.image?.isNotEmpty ?? false)
+                              SliverToBoxAdapter(child: SizedBox(
+                                width: double.maxFinite,
+                                height: kBookDetailImageHeight,
+                                child: CachedNetworkImage(
+                                  imageUrl: book.image!,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),),
                             if (book.authors?.isNotEmpty ?? false)
                               SliverToBoxAdapter(
                                 child: Padding(
