@@ -13,8 +13,8 @@ class BookListState with _$BookListState {
         isLoading: false,
         query: '',
         data: PagedData(
-          page: '1',
-          total: '0',
+          page: 1,
+          total: 0,
           books: <Book>[],
         ),
         failureOrSuccess: none(),

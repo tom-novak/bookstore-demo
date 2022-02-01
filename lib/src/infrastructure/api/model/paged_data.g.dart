@@ -7,11 +7,12 @@ part of 'paged_data.dart';
 // **************************************************************************
 
 _$_PagedData _$$_PagedDataFromJson(Map<String, dynamic> json) => _$_PagedData(
-      page: json['page'] as String,
-      total: json['total'] as String,
-      books: (json['books'] as List<dynamic>)
-          .map((e) => Book.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      page: json['page'] == null ? 1 : int.parse(json['page'] as String),
+      total: json['total'] == null ? 0 : int.parse(json['total'] as String),
+      books: (json['books'] as List<dynamic>?)
+              ?.map((e) => Book.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$$_PagedDataToJson(_$_PagedData instance) =>
