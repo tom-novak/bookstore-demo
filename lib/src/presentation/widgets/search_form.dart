@@ -63,6 +63,8 @@ class _SearchFormState extends State<SearchForm> {
               child: TextFormField(
                 decoration: inputDecoration,
                 controller: widget.controller,
+                textInputAction: TextInputAction.search,
+                onFieldSubmitted: widget.onSubmit,
               ),
             ),
           ),
