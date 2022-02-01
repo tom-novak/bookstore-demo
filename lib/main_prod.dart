@@ -6,8 +6,10 @@ import 'package:bookstore_demo/src/infrastructure/book_repository.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_common_widgets/flutter_common_localizations.dart';
 import 'package:flutter_common_widgets/flutter_common_widgets.dart';
 import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
@@ -35,7 +37,13 @@ class BookStoreApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData().cyanLightOne,
       onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        CommonLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
       supportedLocales: AppLocalizations.supportedLocales,
       home: BookListScreen(
         cubit: getIt.get<BookListCubit>(),
