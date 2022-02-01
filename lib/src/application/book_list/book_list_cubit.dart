@@ -20,8 +20,8 @@ class BookListCubit extends Cubit<BookListState> {
       failureOrSuccess: none(),
       query: query,
       data: PagedData(
-        page: '1',
-        total: '0',
+        page: 1,
+        total: 0,
         books: <Book>[],
       ),
     ));
@@ -36,22 +36,24 @@ class BookListCubit extends Cubit<BookListState> {
   void loadNext() {
     emit(state.copyWith(isLoading: true));
     if (state.query.isNotEmpty &&
-        int.parse(state.data.page) < int.parse(state.data.total)) {
+        state.data.page < state.data.total) {
       repository
           .search(
             query: state.query,
-            page: int.parse(state.data.page) + 1,
+            page: state.data.page + 1,
           )
           .then(
             (value) => value.fold(
               (l) => emit(state.copyWith(isLoading: false)),
-              (r) => emit(state.copyWith(
-                isLoading: false,
-                data: PagedData(
-                    page: r.page,
-                    total: r.total,
-                    books: state.data.books + r.books),
-              )),
+              (r) => emit(
+                state.copyWith(
+                    isLoading: false,
+                    data: PagedData(
+                      page: r.page,
+                      total: r.total,
+                      books: state.data.books + r.books,
+                    )),
+              ),
             ),
           );
     }

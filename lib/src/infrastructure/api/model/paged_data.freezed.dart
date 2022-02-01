@@ -23,9 +23,9 @@ class _$PagedDataTearOff {
   const _$PagedDataTearOff();
 
   _PagedData call(
-      {required String page,
-      required String total,
-      required List<Book> books}) {
+      {@JsonKey(defaultValue: 1, fromJson: int.parse) required int page,
+      @JsonKey(defaultValue: 0, fromJson: int.parse) required int total,
+      @JsonKey(defaultValue: <Book>[]) required List<Book> books}) {
     return _PagedData(
       page: page,
       total: total,
@@ -43,8 +43,11 @@ const $PagedData = _$PagedDataTearOff();
 
 /// @nodoc
 mixin _$PagedData {
-  String get page => throw _privateConstructorUsedError;
-  String get total => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: 1, fromJson: int.parse)
+  int get page => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: 0, fromJson: int.parse)
+  int get total => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: <Book>[])
   List<Book> get books => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,7 +60,10 @@ mixin _$PagedData {
 abstract class $PagedDataCopyWith<$Res> {
   factory $PagedDataCopyWith(PagedData value, $Res Function(PagedData) then) =
       _$PagedDataCopyWithImpl<$Res>;
-  $Res call({String page, String total, List<Book> books});
+  $Res call(
+      {@JsonKey(defaultValue: 1, fromJson: int.parse) int page,
+      @JsonKey(defaultValue: 0, fromJson: int.parse) int total,
+      @JsonKey(defaultValue: <Book>[]) List<Book> books});
 }
 
 /// @nodoc
@@ -78,11 +84,11 @@ class _$PagedDataCopyWithImpl<$Res> implements $PagedDataCopyWith<$Res> {
       page: page == freezed
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       books: books == freezed
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
@@ -97,7 +103,10 @@ abstract class _$PagedDataCopyWith<$Res> implements $PagedDataCopyWith<$Res> {
           _PagedData value, $Res Function(_PagedData) then) =
       __$PagedDataCopyWithImpl<$Res>;
   @override
-  $Res call({String page, String total, List<Book> books});
+  $Res call(
+      {@JsonKey(defaultValue: 1, fromJson: int.parse) int page,
+      @JsonKey(defaultValue: 0, fromJson: int.parse) int total,
+      @JsonKey(defaultValue: <Book>[]) List<Book> books});
 }
 
 /// @nodoc
@@ -119,11 +128,11 @@ class __$PagedDataCopyWithImpl<$Res> extends _$PagedDataCopyWithImpl<$Res>
       page: page == freezed
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       books: books == freezed
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
@@ -135,16 +144,22 @@ class __$PagedDataCopyWithImpl<$Res> extends _$PagedDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PagedData implements _PagedData {
-  _$_PagedData({required this.page, required this.total, required this.books});
+  _$_PagedData(
+      {@JsonKey(defaultValue: 1, fromJson: int.parse) required this.page,
+      @JsonKey(defaultValue: 0, fromJson: int.parse) required this.total,
+      @JsonKey(defaultValue: <Book>[]) required this.books});
 
   factory _$_PagedData.fromJson(Map<String, dynamic> json) =>
       _$$_PagedDataFromJson(json);
 
   @override
-  final String page;
+  @JsonKey(defaultValue: 1, fromJson: int.parse)
+  final int page;
   @override
-  final String total;
+  @JsonKey(defaultValue: 0, fromJson: int.parse)
+  final int total;
   @override
+  @JsonKey(defaultValue: <Book>[])
   final List<Book> books;
 
   @override
@@ -182,18 +197,22 @@ class _$_PagedData implements _PagedData {
 
 abstract class _PagedData implements PagedData {
   factory _PagedData(
-      {required String page,
-      required String total,
-      required List<Book> books}) = _$_PagedData;
+          {@JsonKey(defaultValue: 1, fromJson: int.parse) required int page,
+          @JsonKey(defaultValue: 0, fromJson: int.parse) required int total,
+          @JsonKey(defaultValue: <Book>[]) required List<Book> books}) =
+      _$_PagedData;
 
   factory _PagedData.fromJson(Map<String, dynamic> json) =
       _$_PagedData.fromJson;
 
   @override
-  String get page;
+  @JsonKey(defaultValue: 1, fromJson: int.parse)
+  int get page;
   @override
-  String get total;
+  @JsonKey(defaultValue: 0, fromJson: int.parse)
+  int get total;
   @override
+  @JsonKey(defaultValue: <Book>[])
   List<Book> get books;
   @override
   @JsonKey(ignore: true)

@@ -27,8 +27,8 @@ class BookStoreMockApi implements BookStoreApi {
     await Future.delayed(const Duration(milliseconds: 500));
     return right(
       PagedData(
-        page: page?.toString() ?? '1',
-        total: '20',
+        page: page ?? 1,
+        total: 10,
         books: <Book>[
           Book(
             isbn10: '1234567890',

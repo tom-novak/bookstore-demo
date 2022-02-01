@@ -8,9 +8,9 @@ part 'paged_data.g.dart';
 @freezed
 class PagedData with _$PagedData {
   factory PagedData({
-    required String page,
-    required String total,
-    required List<Book> books,
+    @JsonKey(defaultValue: 1, fromJson: int.parse) required int page,
+    @JsonKey(defaultValue: 0, fromJson: int.parse) required int total,
+    @JsonKey(defaultValue: <Book>[]) required List<Book> books,
   }) = _PagedData;
 
   factory PagedData.fromJson(Map<String, dynamic> json) =>
