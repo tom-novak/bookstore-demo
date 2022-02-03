@@ -1,5 +1,6 @@
 import 'package:bookstore_demo/main_prod.dart';
 import 'package:bookstore_demo/src/application/application.dart';
+import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart'
     as presentation;
 import 'package:flutter/material.dart';
@@ -21,7 +22,6 @@ class BookListScreen extends StatefulWidget {
 class _BookListScreenState extends State<BookListScreen> {
   late ScrollController _controller;
   late Function() bottomReachedListener;
-  var loadingStatus = LoadingStatus.idle;
 
   @override
   void initState() {
@@ -39,9 +39,6 @@ class _BookListScreenState extends State<BookListScreen> {
 
   void onBottomReached() {
     if (_controller.position.pixels > _controller.position.maxScrollExtent) {
-      setState(() {
-        loadingStatus = LoadingStatus.loading;
-      });
       widget.cubit.loadNext();
     }
   }
@@ -55,40 +52,54 @@ class _BookListScreenState extends State<BookListScreen> {
       body: StreamBuilder<BookListState>(
         stream: widget.cubit.stream,
         builder: (context, snapshot) {
-          if (snapshot.data?.data.books != null) {
-            return SliverListPage(
-              controller: _controller,
-              itemBuilder: (context, index) {
-                var item = snapshot.data!.data.books[index];
-                return CommonListTile(
-                  item: item.toCommonItem(),
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return presentation.BookDetailScreen(
-                            bookPreview: snapshot.data!.data.books[index],
-                            cubit: getIt.get<BookDetailCubit>(),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                );
-              },
-              separatorBuilder: (context, index) => const Divider(),
-              itemCount: snapshot.data!.data.books.length,
-              layoutStateBuilder: (context) {
-                return LayoutState.content;
-              },
-              footer: LoadingIndicator(
-                status: loadingStatus,
-              ),
-            );
+          if (snapshot.data == null) {
+            return Center(
+              child: Text(AppLocalizations.of(context)!.start_searching),
+            ); // TODO extract to widget
           }
 
-          return Center(
-            child: Text(AppLocalizations.of(context)!.start_searching),
+          return snapshot.data!.failureOrSuccessOption.fold(
+            // without data
+            () => Center(
+              child: Text(AppLocalizations.of(context)!.start_searching),
+            ), // TODO extract to widget
+            (valueOrFailure) => valueOrFailure.fold(
+              (dataFailure) => const SizedBox.shrink(),
+              // TODO add error widget
+              (data) {
+                return SliverListPage(
+                  controller: _controller,
+                  itemBuilder: (context, index) {
+                    var item = data.books[index];
+                    return CommonListTile(
+                      item: item.toCommonItem(),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return presentation.BookDetailScreen(
+                                bookPreview: item,
+                                cubit: getIt.get<BookDetailCubit>(),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  separatorBuilder: (context, index) => const Divider(),
+                  itemCount: data.books.length,
+                  layoutStateBuilder: (context) {
+                    return LayoutState.content;
+                  },
+                  footer: LoadingIndicator(
+                    status: snapshot.data!.isLoading
+                        ? LoadingStatus.loading
+                        : LoadingStatus.idle,
+                  ),
+                );
+              },
+            ),
           );
         },
       ),
@@ -101,7 +112,7 @@ class _BookListScreenState extends State<BookListScreen> {
               padding: const EdgeInsets.only(left: 8.0),
               child: presentation.SearchForm(
                 onSubmit: (value) {
-                  widget.cubit.search(value);
+                  widget.cubit.search(SearchQuery(value));
                 },
               ),
             ),

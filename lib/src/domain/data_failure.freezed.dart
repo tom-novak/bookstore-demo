@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'failure.dart';
+part of 'data_failure.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,8 +15,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$FailureTearOff {
-  const _$FailureTearOff();
+class _$DataFailureTearOff {
+  const _$DataFailureTearOff();
 
   _Unexpected unexpected() {
     return const _Unexpected();
@@ -24,10 +24,10 @@ class _$FailureTearOff {
 }
 
 /// @nodoc
-const $Failure = _$FailureTearOff();
+const $DataFailure = _$DataFailureTearOff();
 
 /// @nodoc
-mixin _$Failure {
+mixin _$DataFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
@@ -63,18 +63,19 @@ mixin _$Failure {
 }
 
 /// @nodoc
-abstract class $FailureCopyWith<$Res> {
-  factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
-      _$FailureCopyWithImpl<$Res>;
+abstract class $DataFailureCopyWith<$Res> {
+  factory $DataFailureCopyWith(
+          DataFailure value, $Res Function(DataFailure) then) =
+      _$DataFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
-  _$FailureCopyWithImpl(this._value, this._then);
+class _$DataFailureCopyWithImpl<$Res> implements $DataFailureCopyWith<$Res> {
+  _$DataFailureCopyWithImpl(this._value, this._then);
 
-  final Failure _value;
+  final DataFailure _value;
   // ignore: unused_field
-  final $Res Function(Failure) _then;
+  final $Res Function(DataFailure) _then;
 }
 
 /// @nodoc
@@ -85,7 +86,7 @@ abstract class _$UnexpectedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+class __$UnexpectedCopyWithImpl<$Res> extends _$DataFailureCopyWithImpl<$Res>
     implements _$UnexpectedCopyWith<$Res> {
   __$UnexpectedCopyWithImpl(
       _Unexpected _value, $Res Function(_Unexpected) _then)
@@ -102,13 +103,13 @@ class _$_Unexpected with DiagnosticableTreeMixin implements _Unexpected {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Failure.unexpected()';
+    return 'DataFailure.unexpected()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'Failure.unexpected'));
+    properties..add(DiagnosticsProperty('type', 'DataFailure.unexpected'));
   }
 
   @override
@@ -177,6 +178,6 @@ class _$_Unexpected with DiagnosticableTreeMixin implements _Unexpected {
   }
 }
 
-abstract class _Unexpected implements Failure {
+abstract class _Unexpected implements DataFailure {
   const factory _Unexpected() = _$_Unexpected;
 }
