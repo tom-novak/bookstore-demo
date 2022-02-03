@@ -9,7 +9,7 @@ part 'book_detail_cubit.freezed.dart';
 part 'book_detail_state.dart';
 
 class BookDetailCubit extends Cubit<BookDetailState> {
-  final BookRepository repository;
+  final IBookRepository repository;
 
   BookDetailCubit({required this.repository})
       : super(BookDetailState.initial());
@@ -22,7 +22,7 @@ class BookDetailCubit extends Cubit<BookDetailState> {
 
     if (isbn?.isEmpty ?? true) {
       emit(state.copyWith(
-        failureOrSuccessOption: some(left(const Failure.unexpected())),
+        failureOrSuccessOption: some(left(const DataFailure.unexpected())),
       ));
     } else {
       emit(state.copyWith(isbn: isbn!));
@@ -38,7 +38,7 @@ class BookDetailCubit extends Cubit<BookDetailState> {
               (apiFailure) => emit(
                 state.copyWith(
                   isLoading: false,
-                  failureOrSuccessOption: some(left(const Failure.unexpected())),
+                  failureOrSuccessOption: some(left(const DataFailure.unexpected())),
                 ),
               ),
               (result) => emit(
@@ -52,7 +52,7 @@ class BookDetailCubit extends Cubit<BookDetailState> {
     } else {
       emit(
         state.copyWith(
-          failureOrSuccessOption: some(left(const Failure.unexpected())),
+          failureOrSuccessOption: some(left(const DataFailure.unexpected())),
         ),
       );
     }

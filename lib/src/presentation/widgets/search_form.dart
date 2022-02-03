@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_common_widgets/flutter_common_widgets.dart';
 import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
 
 class SearchForm extends StatefulWidget {
@@ -65,6 +66,7 @@ class _SearchFormState extends State<SearchForm> {
                 controller: widget.controller,
                 textInputAction: TextInputAction.search,
                 onFieldSubmitted: widget.onSubmit,
+                validator: (value) => notNullValidator(context, value),
               ),
             ),
           ),
@@ -73,7 +75,8 @@ class _SearchFormState extends State<SearchForm> {
               shape: const CircleBorder(),
             ),
             onPressed: () {
-              if (widget.onSubmit != null) {
+              if (widget.onSubmit != null &&
+                  (_formKey.currentState?.validate() ?? false)) {
                 widget.onSubmit!(widget.controller.text);
               }
             },

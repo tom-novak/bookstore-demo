@@ -20,14 +20,12 @@ class _$BookListStateTearOff {
 
   _BookListState call(
       {required bool isLoading,
-      required String query,
-      required PagedData data,
-      required Option<Either<ApiFailure, Unit>> failureOrSuccess}) {
+      required SearchQuery query,
+      required Option<Either<DataFailure, PagedData>> failureOrSuccessOption}) {
     return _BookListState(
       isLoading: isLoading,
       query: query,
-      data: data,
-      failureOrSuccess: failureOrSuccess,
+      failureOrSuccessOption: failureOrSuccessOption,
     );
   }
 }
@@ -38,9 +36,8 @@ const $BookListState = _$BookListStateTearOff();
 /// @nodoc
 mixin _$BookListState {
   bool get isLoading => throw _privateConstructorUsedError;
-  String get query => throw _privateConstructorUsedError;
-  PagedData get data => throw _privateConstructorUsedError;
-  Option<Either<ApiFailure, Unit>> get failureOrSuccess =>
+  SearchQuery get query => throw _privateConstructorUsedError;
+  Option<Either<DataFailure, PagedData>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -55,11 +52,8 @@ abstract class $BookListStateCopyWith<$Res> {
       _$BookListStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
-      String query,
-      PagedData data,
-      Option<Either<ApiFailure, Unit>> failureOrSuccess});
-
-  $PagedDataCopyWith<$Res> get data;
+      SearchQuery query,
+      Option<Either<DataFailure, PagedData>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -75,8 +69,7 @@ class _$BookListStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = freezed,
     Object? query = freezed,
-    Object? data = freezed,
-    Object? failureOrSuccess = freezed,
+    Object? failureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
@@ -86,23 +79,12 @@ class _$BookListStateCopyWithImpl<$Res>
       query: query == freezed
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as PagedData,
-      failureOrSuccess: failureOrSuccess == freezed
-          ? _value.failureOrSuccess
-          : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ApiFailure, Unit>>,
+              as SearchQuery,
+      failureOrSuccessOption: failureOrSuccessOption == freezed
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<DataFailure, PagedData>>,
     ));
-  }
-
-  @override
-  $PagedDataCopyWith<$Res> get data {
-    return $PagedDataCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
@@ -115,12 +97,8 @@ abstract class _$BookListStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
-      String query,
-      PagedData data,
-      Option<Either<ApiFailure, Unit>> failureOrSuccess});
-
-  @override
-  $PagedDataCopyWith<$Res> get data;
+      SearchQuery query,
+      Option<Either<DataFailure, PagedData>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -138,8 +116,7 @@ class __$BookListStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = freezed,
     Object? query = freezed,
-    Object? data = freezed,
-    Object? failureOrSuccess = freezed,
+    Object? failureOrSuccessOption = freezed,
   }) {
     return _then(_BookListState(
       isLoading: isLoading == freezed
@@ -149,15 +126,11 @@ class __$BookListStateCopyWithImpl<$Res>
       query: query == freezed
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as PagedData,
-      failureOrSuccess: failureOrSuccess == freezed
-          ? _value.failureOrSuccess
-          : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ApiFailure, Unit>>,
+              as SearchQuery,
+      failureOrSuccessOption: failureOrSuccessOption == freezed
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<DataFailure, PagedData>>,
     ));
   }
 }
@@ -168,21 +141,18 @@ class _$_BookListState implements _BookListState {
   const _$_BookListState(
       {required this.isLoading,
       required this.query,
-      required this.data,
-      required this.failureOrSuccess});
+      required this.failureOrSuccessOption});
 
   @override
   final bool isLoading;
   @override
-  final String query;
+  final SearchQuery query;
   @override
-  final PagedData data;
-  @override
-  final Option<Either<ApiFailure, Unit>> failureOrSuccess;
+  final Option<Either<DataFailure, PagedData>> failureOrSuccessOption;
 
   @override
   String toString() {
-    return 'BookListState(isLoading: $isLoading, query: $query, data: $data, failureOrSuccess: $failureOrSuccess)';
+    return 'BookListState(isLoading: $isLoading, query: $query, failureOrSuccessOption: $failureOrSuccessOption)';
   }
 
   @override
@@ -192,9 +162,8 @@ class _$_BookListState implements _BookListState {
             other is _BookListState &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality().equals(other.query, query) &&
-            const DeepCollectionEquality().equals(other.data, data) &&
             const DeepCollectionEquality()
-                .equals(other.failureOrSuccess, failureOrSuccess));
+                .equals(other.failureOrSuccessOption, failureOrSuccessOption));
   }
 
   @override
@@ -202,8 +171,7 @@ class _$_BookListState implements _BookListState {
       runtimeType,
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(query),
-      const DeepCollectionEquality().hash(data),
-      const DeepCollectionEquality().hash(failureOrSuccess));
+      const DeepCollectionEquality().hash(failureOrSuccessOption));
 
   @JsonKey(ignore: true)
   @override
@@ -213,20 +181,17 @@ class _$_BookListState implements _BookListState {
 
 abstract class _BookListState implements BookListState {
   const factory _BookListState(
-          {required bool isLoading,
-          required String query,
-          required PagedData data,
-          required Option<Either<ApiFailure, Unit>> failureOrSuccess}) =
-      _$_BookListState;
+      {required bool isLoading,
+      required SearchQuery query,
+      required Option<Either<DataFailure, PagedData>>
+          failureOrSuccessOption}) = _$_BookListState;
 
   @override
   bool get isLoading;
   @override
-  String get query;
+  SearchQuery get query;
   @override
-  PagedData get data;
-  @override
-  Option<Either<ApiFailure, Unit>> get failureOrSuccess;
+  Option<Either<DataFailure, PagedData>> get failureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$BookListStateCopyWith<_BookListState> get copyWith =>

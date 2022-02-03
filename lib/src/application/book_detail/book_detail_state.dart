@@ -5,7 +5,7 @@ class BookDetailState with _$BookDetailState {
   const factory BookDetailState({
     required bool isLoading,
     required String isbn,
-    required Option<Either<Failure, Book>> failureOrSuccessOption,
+    required Option<Either<DataFailure, Book>> failureOrSuccessOption,
   }) = _BookDetailState;
 
   factory BookDetailState.initial() => BookDetailState(

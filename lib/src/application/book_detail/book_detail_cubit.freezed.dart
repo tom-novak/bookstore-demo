@@ -21,7 +21,7 @@ class _$BookDetailStateTearOff {
   _BookDetailState call(
       {required bool isLoading,
       required String isbn,
-      required Option<Either<Failure, Book>> failureOrSuccessOption}) {
+      required Option<Either<DataFailure, Book>> failureOrSuccessOption}) {
     return _BookDetailState(
       isLoading: isLoading,
       isbn: isbn,
@@ -37,7 +37,7 @@ const $BookDetailState = _$BookDetailStateTearOff();
 mixin _$BookDetailState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get isbn => throw _privateConstructorUsedError;
-  Option<Either<Failure, Book>> get failureOrSuccessOption =>
+  Option<Either<DataFailure, Book>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -53,7 +53,7 @@ abstract class $BookDetailStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       String isbn,
-      Option<Either<Failure, Book>> failureOrSuccessOption});
+      Option<Either<DataFailure, Book>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class _$BookDetailStateCopyWithImpl<$Res>
       failureOrSuccessOption: failureOrSuccessOption == freezed
           ? _value.failureOrSuccessOption
           : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, Book>>,
+              as Option<Either<DataFailure, Book>>,
     ));
   }
 }
@@ -98,7 +98,7 @@ abstract class _$BookDetailStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       String isbn,
-      Option<Either<Failure, Book>> failureOrSuccessOption});
+      Option<Either<DataFailure, Book>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class __$BookDetailStateCopyWithImpl<$Res>
       failureOrSuccessOption: failureOrSuccessOption == freezed
           ? _value.failureOrSuccessOption
           : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, Book>>,
+              as Option<Either<DataFailure, Book>>,
     ));
   }
 }
@@ -148,7 +148,7 @@ class _$_BookDetailState implements _BookDetailState {
   @override
   final String isbn;
   @override
-  final Option<Either<Failure, Book>> failureOrSuccessOption;
+  final Option<Either<DataFailure, Book>> failureOrSuccessOption;
 
   @override
   String toString() {
@@ -183,7 +183,7 @@ abstract class _BookDetailState implements BookDetailState {
   const factory _BookDetailState(
           {required bool isLoading,
           required String isbn,
-          required Option<Either<Failure, Book>> failureOrSuccessOption}) =
+          required Option<Either<DataFailure, Book>> failureOrSuccessOption}) =
       _$_BookDetailState;
 
   @override
@@ -191,7 +191,7 @@ abstract class _BookDetailState implements BookDetailState {
   @override
   String get isbn;
   @override
-  Option<Either<Failure, Book>> get failureOrSuccessOption;
+  Option<Either<DataFailure, Book>> get failureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$BookDetailStateCopyWith<_BookDetailState> get copyWith =>
