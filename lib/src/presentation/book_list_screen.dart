@@ -1,10 +1,10 @@
 import 'package:bookstore_demo/main_prod.dart';
 import 'package:bookstore_demo/src/application/application.dart';
 import 'package:bookstore_demo/src/domain/domain.dart';
-import 'package:bookstore_demo/src/presentation/presentation.dart'
-    as presentation;
+import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_common_widgets/flutter_common_widgets.dart';
+import 'package:flutter_common_widgets/flutter_common_localizations.dart';
+import 'package:flutter_common_widgets/flutter_common_widgets.dart' as common;
 import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
 
 class BookListScreen extends StatefulWidget {
@@ -64,20 +64,21 @@ class _BookListScreenState extends State<BookListScreen> {
               child: Text(AppLocalizations.of(context)!.start_searching),
             ), // TODO extract to widget
             (valueOrFailure) => valueOrFailure.fold(
-              (dataFailure) => const SizedBox.shrink(),
-              // TODO add error widget
+              (dataFailure) => common.CommonErrorPage(
+                  label: CommonLocalizations.of(context)!.error,
+                  description: CommonLocalizations.of(context)!.somethingWrong),
               (data) {
-                return SliverListPage(
+                return common.SliverListPage(
                   controller: _controller,
                   itemBuilder: (context, index) {
                     var item = data.books[index];
-                    return CommonListTile(
+                    return common.CommonListTile(
                       item: item.toCommonItem(),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
-                              return presentation.BookDetailScreen(
+                              return BookDetailScreen(
                                 bookPreview: item,
                                 cubit: getIt.get<BookDetailCubit>(),
                               );
@@ -90,12 +91,12 @@ class _BookListScreenState extends State<BookListScreen> {
                   separatorBuilder: (context, index) => const Divider(),
                   itemCount: data.books.length,
                   layoutStateBuilder: (context) {
-                    return LayoutState.content;
+                    return common.LayoutState.content;
                   },
-                  footer: LoadingIndicator(
+                  footer: common.LoadingIndicator(
                     status: snapshot.data!.isLoading
-                        ? LoadingStatus.loading
-                        : LoadingStatus.idle,
+                        ? common.LoadingStatus.loading
+                        : common.LoadingStatus.idle,
                   ),
                 );
               },
@@ -110,7 +111,7 @@ class _BookListScreenState extends State<BookListScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
-              child: presentation.SearchForm(
+              child: SearchForm(
                 onSubmit: (value) {
                   widget.cubit.search(SearchQuery(value));
                 },
