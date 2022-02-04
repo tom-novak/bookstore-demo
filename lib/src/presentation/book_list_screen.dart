@@ -65,35 +65,40 @@ class _BookListScreenState extends State<BookListScreen> {
                   label: CommonLocalizations.of(context)!.error,
                   description: CommonLocalizations.of(context)!.somethingWrong),
               (data) {
-                return SliverListPage(
-                  controller: _controller,
-                  itemBuilder: (context, index) {
-                    var item = data.books[index];
-                    return CommonListTile(
-                      item: item.toCommonItem(),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return BookDetailScreen(
-                                bookPreview: item,
-                                cubit: getIt.get<BookDetailCubit>(),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    );
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    widget.cubit.refresh();
                   },
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemCount: data.books.length,
-                  layoutStateBuilder: (context) {
-                    return LayoutState.content;
-                  },
-                  footer: LoadingIndicator(
-                    status: state.isLoading
-                        ? LoadingStatus.loading
-                        : LoadingStatus.idle,
+                  child: SliverListPage(
+                    controller: _controller,
+                    itemBuilder: (context, index) {
+                      var item = data.books[index];
+                      return CommonListTile(
+                        item: item.toCommonItem(),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return BookDetailScreen(
+                                  bookPreview: item,
+                                  cubit: getIt.get<BookDetailCubit>(),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    separatorBuilder: (context, index) => const Divider(),
+                    itemCount: data.books.length,
+                    layoutStateBuilder: (context) {
+                      return LayoutState.content;
+                    },
+                    footer: LoadingIndicator(
+                      status: state.isLoading
+                          ? LoadingStatus.loading
+                          : LoadingStatus.idle,
+                    ),
                   ),
                 );
               },

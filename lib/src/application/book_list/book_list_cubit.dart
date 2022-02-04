@@ -16,12 +16,19 @@ class BookListCubit extends Cubit<BookListState> {
   }) : super(BookListState.initial());
 
   void search(SearchQuery query) async {
-    emit(state.copyWith(
-        isLoading: true, query: query, failureOrSuccessOption: none()));
+    emit(state.copyWith(query: query));
+    refresh();
+  }
 
-    query.value.fold(
+  void refresh() async {
+    if (state.isLoading) {
+      return;
+    }
+
+    state.query.value.fold(
       (queryFailure) => null,
       (query) {
+        emit(state.copyWith(isLoading: true, failureOrSuccessOption: none()));
         repository.search(query: query).then(
               (response) => response.fold(
                 (dataFailure) => emit(
