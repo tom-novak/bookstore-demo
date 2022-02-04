@@ -3,9 +3,10 @@ import 'package:bookstore_demo/src/application/application.dart';
 import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_common_widgets/flutter_common_localizations.dart';
-import 'package:flutter_common_widgets/flutter_common_widgets.dart' as common;
-import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
+import 'package:flutter_common_widgets/flutter_common_widgets.dart'
+    hide SearchForm;
 
 class BookListScreen extends StatefulWidget {
   final BookListCubit cubit;
@@ -49,30 +50,26 @@ class _BookListScreenState extends State<BookListScreen> {
       appBar: AppBar(
         title: const Text('Book search'),
       ),
-      body: StreamBuilder<BookListState>(
-        stream: widget.cubit.stream,
-        builder: (context, snapshot) {
-          if (snapshot.data == null) {
-            return Center(
-              child: Text(AppLocalizations.of(context)!.start_searching),
-            ); // TODO extract to widget
-          }
-
-          return snapshot.data!.failureOrSuccessOption.fold(
+      body: BlocBuilder<BookListCubit, BookListState>(
+        bloc: widget.cubit,
+        builder: (context, state) {
+          return state.failureOrSuccessOption.fold(
             // without data
-            () => Center(
-              child: Text(AppLocalizations.of(context)!.start_searching),
-            ), // TODO extract to widget
+            () {
+              return state.isLoading
+                  ? const CommonListShimmer(itemCount: 7)
+                  : const BookDetailEmptyContent();
+            },
             (valueOrFailure) => valueOrFailure.fold(
-              (dataFailure) => common.CommonErrorPage(
+              (dataFailure) => CommonErrorPage(
                   label: CommonLocalizations.of(context)!.error,
                   description: CommonLocalizations.of(context)!.somethingWrong),
               (data) {
-                return common.SliverListPage(
+                return SliverListPage(
                   controller: _controller,
                   itemBuilder: (context, index) {
                     var item = data.books[index];
-                    return common.CommonListTile(
+                    return CommonListTile(
                       item: item.toCommonItem(),
                       onTap: () {
                         Navigator.of(context).push(
@@ -91,12 +88,12 @@ class _BookListScreenState extends State<BookListScreen> {
                   separatorBuilder: (context, index) => const Divider(),
                   itemCount: data.books.length,
                   layoutStateBuilder: (context) {
-                    return common.LayoutState.content;
+                    return LayoutState.content;
                   },
-                  footer: common.LoadingIndicator(
-                    status: snapshot.data!.isLoading
-                        ? common.LoadingStatus.loading
-                        : common.LoadingStatus.idle,
+                  footer: LoadingIndicator(
+                    status: state.isLoading
+                        ? LoadingStatus.loading
+                        : LoadingStatus.idle,
                   ),
                 );
               },
