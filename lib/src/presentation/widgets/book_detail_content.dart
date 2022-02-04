@@ -1,6 +1,5 @@
 import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_common_widgets/flutter_common_widgets.dart' as common;
 import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
@@ -51,10 +50,7 @@ class BookDetailContent extends StatelessWidget {
                   horizontal: common.kContainerPaddingValue),
               width: double.maxFinite,
               height: kBookDetailImageHeight,
-              child: CachedNetworkImage(
-                imageUrl: book.image!,
-                fit: BoxFit.fitHeight,
-              ),
+              child: BookDetailImage(imageUrl: book.image!),
             ),
           ),
         BookDetailSliverBox(
