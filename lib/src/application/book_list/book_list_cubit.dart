@@ -15,12 +15,12 @@ class BookListCubit extends Cubit<BookListState> {
     required this.repository,
   }) : super(BookListState.initial());
 
-  void search(SearchQuery query) async {
+  void search(SearchQuery query) {
     emit(state.copyWith(query: query));
     refresh();
   }
 
-  void refresh() async {
+  void refresh() {
     if (state.isLoading) {
       return;
     }

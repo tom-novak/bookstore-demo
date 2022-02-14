@@ -9,12 +9,10 @@ import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
 
 class BookDetailScreen extends StatefulWidget {
   final Book bookPreview;
-  final BookDetailCubit cubit;
 
   const BookDetailScreen({
     Key? key,
     required this.bookPreview,
-    required this.cubit,
   }) : super(key: key);
 
   @override
@@ -24,7 +22,7 @@ class BookDetailScreen extends StatefulWidget {
 class _BookDetailScreenState extends State<BookDetailScreen> {
   @override
   void initState() {
-    widget.cubit.init(widget.bookPreview);
+    context.read<BookDetailCubit>().init(widget.bookPreview);
     super.initState();
   }
 
@@ -35,7 +33,6 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
         title: Text(AppLocalizations.of(context)!.book_detail),
       ),
       body: BlocBuilder<BookDetailCubit, BookDetailState>(
-        bloc: widget.cubit,
         builder: (context, state) {
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
