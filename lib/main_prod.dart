@@ -6,6 +6,7 @@ import 'package:bookstore_demo/src/infrastructure/book_repository.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_common_widgets/flutter_common_localizations.dart';
 import 'package:flutter_common_widgets/flutter_common_widgets.dart';
 import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
@@ -19,11 +20,6 @@ void main() {
   getIt.registerFactory<BookStoreApi>(() => BookStoreRestApi(dio: dio));
   getIt.registerFactory<BookRepository>(
       () => BookRepository(bookApi: getIt.get<BookStoreApi>()));
-
-  getIt.registerFactory<BookListCubit>(
-      () => BookListCubit(repository: getIt.get<BookRepository>()));
-  getIt.registerFactory<BookDetailCubit>(
-      () => BookDetailCubit(repository: getIt.get<BookRepository>()));
 
   runApp(const BookStoreApp());
 }
@@ -45,8 +41,10 @@ class BookStoreApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: BookListScreen(
-        cubit: getIt.get<BookListCubit>(),
+      home: BlocProvider(
+        create: (context) =>
+            BookListCubit(repository: getIt.get<BookRepository>()),
+        child: const BookListScreen(),
       ),
     );
   }
