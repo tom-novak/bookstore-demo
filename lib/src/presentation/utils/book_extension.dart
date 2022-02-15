@@ -1,4 +1,4 @@
-import 'package:bookstore_demo/src/infrastructure/api/model/book.dart';
+import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_common_widgets/flutter_common_widgets.dart';
 

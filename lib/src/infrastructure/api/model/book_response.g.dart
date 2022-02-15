@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'book.dart';
+part of 'book_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
+_$_BookResponse _$$_BookResponseFromJson(Map<String, dynamic> json) =>
+    _$_BookResponse(
       error: json['error'] as String?,
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
@@ -26,7 +27,8 @@ _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       ),
     );
 
-Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
+Map<String, dynamic> _$$_BookResponseToJson(_$_BookResponse instance) =>
+    <String, dynamic>{
       'error': instance.error,
       'title': instance.title,
       'subtitle': instance.subtitle,

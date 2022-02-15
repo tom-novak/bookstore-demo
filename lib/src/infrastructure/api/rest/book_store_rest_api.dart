@@ -10,30 +10,30 @@ class BookStoreRestApi implements BookStoreApi {
   });
 
   @override
-  Future<Either<ApiFailure, Book>> book(String isbn) async {
+  Future<Either<ApiFailure, BookResponse>> book(String isbn) async {
     var response = await dio.get('books/$isbn');
     return processResponse(
       response: response,
-      dataBuilder: (data) => Book.fromJson(data),
+      dataBuilder: (data) => BookResponse.fromJson(data),
     );
   }
 
   @override
-  Future<Either<ApiFailure, PagedData>> newBooks() async {
+  Future<Either<ApiFailure, BooksResponse>> newBooks() async {
     var response = await dio.get('new');
     return processResponse(
       response: response,
-      dataBuilder: (data) => PagedData.fromJson(data),
+      dataBuilder: (data) => BooksResponse.fromJson(data),
     );
   }
 
   @override
-  Future<Either<ApiFailure, PagedData>> search(String query, int? page) async {
+  Future<Either<ApiFailure, BooksResponse>> search(String query, int? page) async {
     var pageUrlPart = page == null ? '' : '/$page';
     var response = await dio.get('search/$query$pageUrlPart');
-    return processResponse<PagedData>(
+    return processResponse<BooksResponse>(
       response: response,
-      dataBuilder: (data) => PagedData.fromJson(data),
+      dataBuilder: (data) => BooksResponse.fromJson(data),
     );
   }
 

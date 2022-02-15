@@ -1,7 +1,6 @@
 import 'package:bookstore_demo/main_prod.dart';
 import 'package:bookstore_demo/src/application/application.dart';
 import 'package:bookstore_demo/src/domain/domain.dart';
-import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,7 +81,7 @@ class _BookListScreenState extends State<BookListScreen> {
                               builder: (context) {
                                 return BlocProvider(
                                   create: (context) => BookDetailCubit(
-                                      repository: getIt.get<BookRepository>()),
+                                      repository: getIt.get<IBookRepository>()),
                                   child: BookDetailScreen(
                                     bookPreview: item,
                                   ),

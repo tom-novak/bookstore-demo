@@ -1,4 +1,5 @@
 import 'package:bookstore_demo/src/application/application.dart';
+import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/infrastructure/api/book_store_api.dart';
 import 'package:bookstore_demo/src/infrastructure/api/mock/book_store_mock_api.dart';
 import 'package:bookstore_demo/src/infrastructure/book_repository.dart';
@@ -13,7 +14,7 @@ GetIt getIt = GetIt.instance;
 
 void main() {
   getIt.registerFactory<BookStoreApi>(() => BookStoreMockApi());
-  getIt.registerFactory<BookRepository>(
+  getIt.registerFactory<IBookRepository>(
       () => BookRepository(bookApi: getIt.get<BookStoreApi>()));
 
   runApp(const BookStoreApp());
@@ -32,7 +33,7 @@ class BookStoreApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       home: BlocProvider(
         create: (context) =>
-            BookListCubit(repository: getIt.get<BookRepository>()),
+            BookListCubit(repository: getIt.get<IBookRepository>()),
         child: const BookListScreen(),
       ),
     );

@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'book.freezed.dart';
-part 'book.g.dart';
+part 'book_response.freezed.dart';
+part 'book_response.g.dart';
 
 @freezed
-class Book with _$Book {
-  factory Book({
+class BookResponse with _$BookResponse {
+  factory BookResponse({
     String? error,
     String? title,
     String? subtitle,
@@ -21,7 +21,7 @@ class Book with _$Book {
     String? image,
     String? url,
     Map<String, String>? pdf,
-  }) = _Book;
+  }) = _BookResponse;
 
-  factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
+  factory BookResponse.fromJson(Map<String, dynamic> json) => _$BookResponseFromJson(json);
 }

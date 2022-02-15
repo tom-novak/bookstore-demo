@@ -1,4 +1,4 @@
-import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
+import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_common_widgets/flutter_common_widgets.dart' as common;

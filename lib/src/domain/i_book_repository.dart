@@ -1,11 +1,11 @@
-import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
+import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IBookRepository {
-  Future<Either<ApiFailure, PagedData>> search(
+  Future<Either<DataFailure, PagedBooks>> search(
       {required String query, int? page});
 
-  Future<Either<ApiFailure, PagedData>> newBooks();
+  Future<Either<DataFailure, PagedBooks>> newBooks();
 
-  Future<Either<ApiFailure, Book>> book({required String bookId});
+  Future<Either<DataFailure, Book>> book({required String bookId});
 }
