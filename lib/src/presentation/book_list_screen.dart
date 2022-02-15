@@ -61,7 +61,7 @@ class _BookListScreenState extends State<BookListScreen> {
               () {
                 return state.isLoading
                     ? const CommonListShimmer(itemCount: 7)
-                    : const BookDetailInitContent();
+                    : const BookListInitContent();
               },
               (valueOrFailure) => valueOrFailure.fold(
                 (dataFailure) => CommonErrorPage(
