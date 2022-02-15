@@ -14,17 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Book _$BookFromJson(Map<String, dynamic> json) {
-  return _Book.fromJson(json);
-}
-
 /// @nodoc
 class _$BookTearOff {
   const _$BookTearOff();
 
   _Book call(
-      {String? error,
-      String? title,
+      {String? title,
       String? subtitle,
       String? authors,
       String? publisher,
@@ -39,7 +34,6 @@ class _$BookTearOff {
       String? url,
       Map<String, String>? pdf}) {
     return _Book(
-      error: error,
       title: title,
       subtitle: subtitle,
       authors: authors,
@@ -56,10 +50,6 @@ class _$BookTearOff {
       pdf: pdf,
     );
   }
-
-  Book fromJson(Map<String, Object?> json) {
-    return Book.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -67,7 +57,6 @@ const $Book = _$BookTearOff();
 
 /// @nodoc
 mixin _$Book {
-  String? get error => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get subtitle => throw _privateConstructorUsedError;
   String? get authors => throw _privateConstructorUsedError;
@@ -83,7 +72,6 @@ mixin _$Book {
   String? get url => throw _privateConstructorUsedError;
   Map<String, String>? get pdf => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BookCopyWith<Book> get copyWith => throw _privateConstructorUsedError;
 }
@@ -93,8 +81,7 @@ abstract class $BookCopyWith<$Res> {
   factory $BookCopyWith(Book value, $Res Function(Book) then) =
       _$BookCopyWithImpl<$Res>;
   $Res call(
-      {String? error,
-      String? title,
+      {String? title,
       String? subtitle,
       String? authors,
       String? publisher,
@@ -120,7 +107,6 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? error = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
     Object? authors = freezed,
@@ -137,10 +123,6 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
     Object? pdf = freezed,
   }) {
     return _then(_value.copyWith(
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -207,8 +189,7 @@ abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       __$BookCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? error,
-      String? title,
+      {String? title,
       String? subtitle,
       String? authors,
       String? publisher,
@@ -235,7 +216,6 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? error = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
     Object? authors = freezed,
@@ -252,10 +232,6 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? pdf = freezed,
   }) {
     return _then(_Book(
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -317,11 +293,10 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Book implements _Book {
   _$_Book(
-      {this.error,
-      this.title,
+      {this.title,
       this.subtitle,
       this.authors,
       this.publisher,
@@ -336,10 +311,6 @@ class _$_Book implements _Book {
       this.url,
       this.pdf});
 
-  factory _$_Book.fromJson(Map<String, dynamic> json) => _$$_BookFromJson(json);
-
-  @override
-  final String? error;
   @override
   final String? title;
   @override
@@ -371,7 +342,7 @@ class _$_Book implements _Book {
 
   @override
   String toString() {
-    return 'Book(error: $error, title: $title, subtitle: $subtitle, authors: $authors, publisher: $publisher, isbn10: $isbn10, isbn13: $isbn13, pages: $pages, year: $year, rating: $rating, description: $description, price: $price, image: $image, url: $url, pdf: $pdf)';
+    return 'Book(title: $title, subtitle: $subtitle, authors: $authors, publisher: $publisher, isbn10: $isbn10, isbn13: $isbn13, pages: $pages, year: $year, rating: $rating, description: $description, price: $price, image: $image, url: $url, pdf: $pdf)';
   }
 
   @override
@@ -379,7 +350,6 @@ class _$_Book implements _Book {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Book &&
-            const DeepCollectionEquality().equals(other.error, error) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.subtitle, subtitle) &&
             const DeepCollectionEquality().equals(other.authors, authors) &&
@@ -400,7 +370,6 @@ class _$_Book implements _Book {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(subtitle),
       const DeepCollectionEquality().hash(authors),
@@ -420,17 +389,11 @@ class _$_Book implements _Book {
   @override
   _$BookCopyWith<_Book> get copyWith =>
       __$BookCopyWithImpl<_Book>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_BookToJson(this);
-  }
 }
 
 abstract class _Book implements Book {
   factory _Book(
-      {String? error,
-      String? title,
+      {String? title,
       String? subtitle,
       String? authors,
       String? publisher,
@@ -445,10 +408,6 @@ abstract class _Book implements Book {
       String? url,
       Map<String, String>? pdf}) = _$_Book;
 
-  factory _Book.fromJson(Map<String, dynamic> json) = _$_Book.fromJson;
-
-  @override
-  String? get error;
   @override
   String? get title;
   @override

@@ -1,4 +1,5 @@
 import 'package:bookstore_demo/src/application/application.dart';
+import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/infrastructure/api/api_constants.dart';
 import 'package:bookstore_demo/src/infrastructure/api/book_store_api.dart';
 import 'package:bookstore_demo/src/infrastructure/api/rest/book_store_rest_api.dart';
@@ -18,7 +19,7 @@ Dio dio = Dio(BaseOptions(baseUrl: kApiUrl));
 
 void main() {
   getIt.registerFactory<BookStoreApi>(() => BookStoreRestApi(dio: dio));
-  getIt.registerFactory<BookRepository>(
+  getIt.registerFactory<IBookRepository>(
       () => BookRepository(bookApi: getIt.get<BookStoreApi>()));
 
   runApp(const BookStoreApp());
@@ -43,7 +44,7 @@ class BookStoreApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       home: BlocProvider(
         create: (context) =>
-            BookListCubit(repository: getIt.get<BookRepository>()),
+            BookListCubit(repository: getIt.get<IBookRepository>()),
         child: const BookListScreen(),
       ),
     );

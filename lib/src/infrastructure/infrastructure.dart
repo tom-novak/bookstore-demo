@@ -1,7 +1,10 @@
 export 'api/api_constants.dart';
 export 'api/book_store_api.dart';
-export 'api/model/book.dart';
+export 'api/extension/api_failure_extension.dart';
+export 'api/extension/book_response_extension.dart';
+export 'api/extension/books_response_extension.dart';
 export 'api/model/api_failure.dart';
-export 'api/model/paged_data.dart';
+export 'api/model/book_response.dart';
+export 'api/model/books_response.dart';
 export 'api/rest/book_store_rest_api.dart';
 export 'book_repository.dart';

@@ -1,5 +1,4 @@
 import 'package:bookstore_demo/src/domain/domain.dart';
-import 'package:bookstore_demo/src/infrastructure/infrastructure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,7 +8,7 @@ part 'book_list_cubit.freezed.dart';
 part 'book_list_state.dart';
 
 class BookListCubit extends Cubit<BookListState> {
-  final BookRepository repository;
+  final IBookRepository repository;
 
   BookListCubit({
     required this.repository,
@@ -75,7 +74,7 @@ class BookListCubit extends Cubit<BookListState> {
                             isLoading: false,
                             failureOrSuccessOption: some(
                               right(
-                                PagedData(
+                                PagedBooks(
                                   page: apiData.page,
                                   total: apiData.total,
                                   books: data.books + apiData.books,

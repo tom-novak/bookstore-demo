@@ -5,7 +5,7 @@ class BookListState with _$BookListState {
   const factory BookListState({
     required bool isLoading,
     required SearchQuery query,
-    required Option<Either<DataFailure, PagedData>> failureOrSuccessOption,
+    required Option<Either<DataFailure, PagedBooks>> failureOrSuccessOption,
   }) = _BookListState;
 
   factory BookListState.initial() => BookListState(

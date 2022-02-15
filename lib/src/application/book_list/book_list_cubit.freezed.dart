@@ -21,7 +21,8 @@ class _$BookListStateTearOff {
   _BookListState call(
       {required bool isLoading,
       required SearchQuery query,
-      required Option<Either<DataFailure, PagedData>> failureOrSuccessOption}) {
+      required Option<Either<DataFailure, PagedBooks>>
+          failureOrSuccessOption}) {
     return _BookListState(
       isLoading: isLoading,
       query: query,
@@ -37,7 +38,7 @@ const $BookListState = _$BookListStateTearOff();
 mixin _$BookListState {
   bool get isLoading => throw _privateConstructorUsedError;
   SearchQuery get query => throw _privateConstructorUsedError;
-  Option<Either<DataFailure, PagedData>> get failureOrSuccessOption =>
+  Option<Either<DataFailure, PagedBooks>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -53,7 +54,7 @@ abstract class $BookListStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       SearchQuery query,
-      Option<Either<DataFailure, PagedData>> failureOrSuccessOption});
+      Option<Either<DataFailure, PagedBooks>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -83,7 +84,7 @@ class _$BookListStateCopyWithImpl<$Res>
       failureOrSuccessOption: failureOrSuccessOption == freezed
           ? _value.failureOrSuccessOption
           : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<DataFailure, PagedData>>,
+              as Option<Either<DataFailure, PagedBooks>>,
     ));
   }
 }
@@ -98,7 +99,7 @@ abstract class _$BookListStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       SearchQuery query,
-      Option<Either<DataFailure, PagedData>> failureOrSuccessOption});
+      Option<Either<DataFailure, PagedBooks>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -130,7 +131,7 @@ class __$BookListStateCopyWithImpl<$Res>
       failureOrSuccessOption: failureOrSuccessOption == freezed
           ? _value.failureOrSuccessOption
           : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<DataFailure, PagedData>>,
+              as Option<Either<DataFailure, PagedBooks>>,
     ));
   }
 }
@@ -148,7 +149,7 @@ class _$_BookListState implements _BookListState {
   @override
   final SearchQuery query;
   @override
-  final Option<Either<DataFailure, PagedData>> failureOrSuccessOption;
+  final Option<Either<DataFailure, PagedBooks>> failureOrSuccessOption;
 
   @override
   String toString() {
@@ -183,7 +184,7 @@ abstract class _BookListState implements BookListState {
   const factory _BookListState(
       {required bool isLoading,
       required SearchQuery query,
-      required Option<Either<DataFailure, PagedData>>
+      required Option<Either<DataFailure, PagedBooks>>
           failureOrSuccessOption}) = _$_BookListState;
 
   @override
@@ -191,7 +192,7 @@ abstract class _BookListState implements BookListState {
   @override
   SearchQuery get query;
   @override
-  Option<Either<DataFailure, PagedData>> get failureOrSuccessOption;
+  Option<Either<DataFailure, PagedBooks>> get failureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$BookListStateCopyWith<_BookListState> get copyWith =>
