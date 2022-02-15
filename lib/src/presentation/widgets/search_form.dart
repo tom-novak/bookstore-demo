@@ -65,7 +65,7 @@ class _SearchFormState extends State<SearchForm> {
                 decoration: inputDecoration,
                 controller: widget.controller,
                 textInputAction: TextInputAction.search,
-                onFieldSubmitted: widget.onSubmit,
+                onFieldSubmitted: (value) => _onSubmit(),
                 validator: (value) => notNullValidator(context, value),
               ),
             ),
@@ -74,17 +74,19 @@ class _SearchFormState extends State<SearchForm> {
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
             ),
-            onPressed: () {
-              if (widget.onSubmit != null &&
-                  (_formKey.currentState?.validate() ?? false)) {
-                widget.onSubmit!(widget.controller.text);
-              }
-            },
+            onPressed: _onSubmit,
             child: const Icon(Icons.search),
           ),
         ],
       ),
     );
+  }
+
+  void _onSubmit() {
+    if (widget.onSubmit != null &&
+        (_formKey.currentState?.validate() ?? false)) {
+      widget.onSubmit!(widget.controller.text);
+    }
   }
 
   void _onValueChanged() {
