@@ -36,7 +36,7 @@ class _BookListScreenState extends State<BookListScreen> {
   }
 
   void onBottomReached() {
-    if (_controller.position.pixels > _controller.position.maxScrollExtent) {
+    if (_controller.position.pixels >= _controller.position.maxScrollExtent) {
       context.read<BookListCubit>().loadNext();
     }
   }
