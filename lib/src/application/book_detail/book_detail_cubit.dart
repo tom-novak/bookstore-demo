@@ -13,18 +13,13 @@ class BookDetailCubit extends Cubit<BookDetailState> {
   BookDetailCubit({required this.repository})
       : super(BookDetailState.initial());
 
-  void init(Book bookPreview) {
-    var isbn = bookPreview.isbn13;
-    if (isbn?.isEmpty ?? true) {
-      isbn = bookPreview.isbn10;
-    }
-
-    if (isbn?.isEmpty ?? true) {
+  void init(String isbn) {
+    if (isbn.isEmpty) {
       emit(state.copyWith(
         failureOrSuccessOption: some(left(const DataFailure.unexpected())),
       ));
     } else {
-      emit(state.copyWith(isbn: isbn!));
+      emit(state.copyWith(isbn: isbn));
       loadBookDetail();
     }
   }
@@ -37,7 +32,8 @@ class BookDetailCubit extends Cubit<BookDetailState> {
               (apiFailure) => emit(
                 state.copyWith(
                   isLoading: false,
-                  failureOrSuccessOption: some(left(const DataFailure.unexpected())),
+                  failureOrSuccessOption:
+                      some(left(const DataFailure.unexpected())),
                 ),
               ),
               (result) => emit(

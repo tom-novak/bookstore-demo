@@ -1,5 +1,4 @@
 import 'package:bookstore_demo/src/application/application.dart';
-import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,11 +7,11 @@ import 'package:flutter_common_widgets/flutter_common_widgets.dart' as common;
 import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
 
 class BookDetailScreen extends StatefulWidget {
-  final Book bookPreview;
+  final String bookId;
 
   const BookDetailScreen({
     Key? key,
-    required this.bookPreview,
+    required this.bookId,
   }) : super(key: key);
 
   @override
@@ -22,7 +21,7 @@ class BookDetailScreen extends StatefulWidget {
 class _BookDetailScreenState extends State<BookDetailScreen> {
   @override
   void initState() {
-    context.read<BookDetailCubit>().init(widget.bookPreview);
+    context.read<BookDetailCubit>().init(widget.bookId);
     super.initState();
   }
 

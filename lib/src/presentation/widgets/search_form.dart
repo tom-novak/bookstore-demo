@@ -18,8 +18,7 @@ class SearchForm extends StatefulWidget {
     this.onValueChanged,
     TextEditingController? controller,
     this.inputDecoration,
-  })
-      : controller = controller ?? TextEditingController(),
+  })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
   @override
@@ -90,8 +89,6 @@ class _SearchFormState extends State<SearchForm> {
   }
 
   void _onValueChanged() {
-    if (widget.onValueChanged != null) {
-      widget.onValueChanged!(widget.controller.text);
-    }
+    widget.onValueChanged?.call(widget.controller.text);
   }
 }
