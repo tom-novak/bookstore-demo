@@ -1,4 +1,5 @@
 export 'book.dart';
+export 'book_extension.dart';
 export 'data_failure.dart';
 export 'i_book_repository.dart';
 export 'paged_books.dart';

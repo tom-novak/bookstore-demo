@@ -1,4 +1,3 @@
-import 'package:bookstore_demo/main_prod.dart';
 import 'package:bookstore_demo/src/application/application.dart';
 import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/presentation/presentation.dart';
@@ -9,8 +8,11 @@ import 'package:flutter_common_widgets/flutter_common_widgets.dart'
     hide SearchForm;
 
 class BookListScreen extends StatefulWidget {
+  final ValueChanged<Book>? onBookSelected;
+
   const BookListScreen({
     Key? key,
+    this.onBookSelected,
   }) : super(key: key);
 
   @override
@@ -78,22 +80,7 @@ class _BookListScreenState extends State<BookListScreen> {
                             var item = data.books[index];
                             return CommonListTile(
                               item: item.toCommonItem(),
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return BlocProvider(
-                                        create: (context) => BookDetailCubit(
-                                            repository:
-                                                getIt.get<IBookRepository>()),
-                                        child: BookDetailScreen(
-                                          bookPreview: item,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
+                              onTap: () => widget.onBookSelected?.call(item),
                             );
                           },
                           separatorBuilder: (context, index) => const Divider(),

@@ -1,52 +1,19 @@
-import 'package:bookstore_demo/src/application/application.dart';
+import 'package:bookstore_demo/src/bookstore_app.dart';
 import 'package:bookstore_demo/src/domain/domain.dart';
 import 'package:bookstore_demo/src/infrastructure/api/api_constants.dart';
 import 'package:bookstore_demo/src/infrastructure/api/book_store_api.dart';
 import 'package:bookstore_demo/src/infrastructure/api/rest/book_store_rest_api.dart';
 import 'package:bookstore_demo/src/infrastructure/book_repository.dart';
-import 'package:bookstore_demo/src/presentation/presentation.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_common_widgets/flutter_common_localizations.dart';
-import 'package:flutter_common_widgets/flutter_common_widgets.dart';
-import 'package:flutter_gen/gen_l10n/bookstore_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 
-GetIt getIt = GetIt.instance;
-Dio dio = Dio(BaseOptions(baseUrl: kApiUrl));
-
 void main() {
+  GetIt getIt = GetIt.instance;
+  Dio dio = Dio(BaseOptions(baseUrl: kApiUrl));
   getIt.registerFactory<BookStoreApi>(() => BookStoreRestApi(dio: dio));
   getIt.registerFactory<IBookRepository>(
       () => BookRepository(bookApi: getIt.get<BookStoreApi>()));
 
   runApp(const BookStoreApp());
-}
-
-class BookStoreApp extends StatelessWidget {
-  const BookStoreApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData().cyanLightOne,
-      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        CommonLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: BlocProvider(
-        create: (context) =>
-            BookListCubit(repository: getIt.get<IBookRepository>()),
-        child: const BookListScreen(),
-      ),
-    );
-  }
 }
