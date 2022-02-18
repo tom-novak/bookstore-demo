@@ -66,15 +66,19 @@ class _BookListScreenState extends State<BookListScreen> {
                     () {
                       return state.isLoading
                           ? const CommonListShimmer(itemCount: 7)
-                          : const BookListInitContent();
+                          : const BookListInitContent(
+                              key: Key('bookList:initContent'),
+                            );
                     },
                     (valueOrFailure) => valueOrFailure.fold(
                       (dataFailure) => CommonErrorPage(
+                        key: const Key('bookList:commonError'),
                           label: CommonLocalizations.of(context)!.error,
                           description:
                               CommonLocalizations.of(context)!.somethingWrong),
                       (data) {
                         return SliverListPage(
+                          key: const Key('bookList:content'),
                           controller: _controller,
                           itemBuilder: (context, index) {
                             var item = data.books[index];
@@ -109,6 +113,7 @@ class _BookListScreenState extends State<BookListScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: SearchForm(
+                    key: const Key('bookList:searchForm'),
                     onSubmit: (value) {
                       context.read<BookListCubit>().search(SearchQuery(value));
                     },
