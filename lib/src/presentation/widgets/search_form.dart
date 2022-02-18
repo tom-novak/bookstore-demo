@@ -61,6 +61,7 @@ class _SearchFormState extends State<SearchForm> {
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: TextFormField(
+                key: const Key('searchForm:textInput'),
                 decoration: inputDecoration,
                 controller: widget.controller,
                 textInputAction: TextInputAction.search,
@@ -70,6 +71,7 @@ class _SearchFormState extends State<SearchForm> {
             ),
           ),
           ElevatedButton(
+            key: const Key('searchForm:submit'),
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
             ),
