@@ -45,6 +45,7 @@ dependencies:
   flutter_common_widgets:
     git:
       url: https://github.com/tom-novak/flutter-common-widgets.git
+      ref: v1.0.0-dev.1
   intl: ^0.17.0
   cached_network_image: ^3.2.0
 
